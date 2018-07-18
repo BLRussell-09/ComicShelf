@@ -1,0 +1,18 @@
+import firebase from 'firebase';
+
+const loginUser = (user) =>
+{
+  return firebase.auth().signInWithEmailAndPassword(user.email, user.password);
+};
+
+const logoutUser = () =>
+{
+  return firebase.auth().signOut();
+};
+
+const getUid = () =>
+{
+  return firebase.auth().currentUser.uid;
+};
+
+export default {getUid, loginUser, logoutUser};
