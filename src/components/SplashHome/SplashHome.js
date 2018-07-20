@@ -1,5 +1,6 @@
 import React from 'react';
 import './SplashHome.css';
+import SearchBar from '../SearchBar/SearchBar';
 
 class SplashHome extends React.Component
 {
@@ -8,6 +9,7 @@ class SplashHome extends React.Component
     return (
       <div className="SplashHome">
         <h2>Splash Home</h2>
+        <SearchBar/>
       </div>
     );
   }
