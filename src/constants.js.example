@@ -9,6 +9,10 @@ const constants =
     storageBucket: '',
     messagingSenderId: '',
   },
+  comicVineConfig,
+  {
+    apiKey: '',
+  }
 };
 
 export default constants;

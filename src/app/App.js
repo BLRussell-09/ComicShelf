@@ -9,7 +9,8 @@ import Login from '../components/Login/Login';
 import MyLibrary from '../components/MyLibrary/MyLibrary';
 import Navbar from '../components/Navbar/Navbar';
 import Register from '../components/Register/Register';
-// import SplashHome from '../components/SplashHome/SplashHome';
+import SplashHome from '../components/SplashHome/SplashHome';
+import SearchBar from '../components/SearchBar/SearchBar';
 fbConnection();
 
 const PrivateRoute = ({component: Component, authed, ...rest}) =>
@@ -57,6 +58,8 @@ class App extends Component {
   state =
   {
     authed: false,
+    proxyResponse: '',
+    corsResponse: '',
   };
 
   componentDidMount ()
@@ -92,15 +95,25 @@ class App extends Component {
             <div className="container">
               <div className="row">
                 <Switch>
-                  <PrivateRoute
+                  <Route
                     authed={this.state.authed}
-                    component={BrowseComics}
-                    path='/browseComics'
+                    component={SplashHome}
+                    path='/home'
+                  />
+                  <Route
+                    authed={this.state.authed}
+                    component={SearchBar}
+                    path='/searchBar'
                   />
                   <PrivateRoute
                     authed={this.state.authed}
                     component={MyLibrary}
                     path='/myLibrary'
+                  />
+                  <Route
+                    authed={this.state.authed}
+                    component={BrowseComics}
+                    path='/browseComics'
                   />
                   <PublicRoute
                     authed={this.state.authed}
