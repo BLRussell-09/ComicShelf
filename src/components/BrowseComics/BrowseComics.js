@@ -10,6 +10,7 @@ class BrowseComics extends React.Component
   {
     issues: [],
     query: '',
+    singleIssue: [],
   }
 
   queryStr = e =>
@@ -29,6 +30,7 @@ class BrowseComics extends React.Component
       .then((res) =>
       {
         this.setState({issues: res[0]});
+        this.props.history.push('/BrowseComics');
       })
       .catch((err) =>
       {
@@ -40,10 +42,18 @@ class BrowseComics extends React.Component
   {
     const comicIssueComponents = this.state.issues.map((comicIssue) =>
     {
+      const singleIssueClick = (e) =>
+      {
+        e.preventDefault();
+        this.props.history.push(`/browseComics/${comicIssue.id}`);
+        this.setState({singleIssue: comicIssue});
+      };
+
       return (
         <ComicIssue
           issue={comicIssue}
           key={comicIssue.id}
+          singleIssueClick={singleIssueClick}
         />
       );
     });

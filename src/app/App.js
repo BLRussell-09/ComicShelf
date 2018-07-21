@@ -58,8 +58,6 @@ class App extends Component {
   state =
   {
     authed: false,
-    proxyResponse: '',
-    corsResponse: '',
   };
 
   componentDidMount ()
