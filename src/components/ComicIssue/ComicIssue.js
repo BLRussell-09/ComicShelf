@@ -20,7 +20,9 @@ class ComicIssue extends React.Component
           <img src={issue.image.original_url} alt={issue.image.name}/>
         </a>
         <nav className="navContainer">
-          <li className="buttons material-icons md-48" tooltip="Save to Library"><Link to="/MyLibrary">add_circle</Link></li>
+          <li className="buttons material-icons md-48" onClick={singleIssueClick} tooltip="Save to Library">
+            <Link to="/MyLibrary">add_circle</Link>
+          </li>
           <i href="/" className="buttons material-icons md-48" tooltip="View Covers">pageview</i>
           <i onClick={this.hoverClick}className="buttons material-icons md-48">add</i>
         </nav>

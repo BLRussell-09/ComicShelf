@@ -1,8 +1,10 @@
 import React from 'react';
 import './BrowseComics.css';
+import auth from '../../firebaseRequests/auth';
+import comics from '../../firebaseRequests/comics';
 import comicVine from '../../comicVineRequests/comicVine';
-import SearchBar from '../SearchBar/SearchBar';
 import ComicIssue from '../ComicIssue/ComicIssue';
+import SearchBar from '../SearchBar/SearchBar';
 
 class BrowseComics extends React.Component
 {
@@ -45,8 +47,11 @@ class BrowseComics extends React.Component
       const singleIssueClick = (e) =>
       {
         e.preventDefault();
-        this.props.history.push(`/browseComics/${comicIssue.id}`);
         this.setState({singleIssue: comicIssue});
+        comicIssue.uid = auth.getUid();
+        comicIssue.isFavorite = false;
+        comics.saveComicsbyIssue(comicIssue);
+        this.props.history.push(`/MyLibrary/`);
       };
 
       return (
