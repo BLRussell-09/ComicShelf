@@ -1,4 +1,4 @@
-.ComicIssue {
+.MyComicIssue {
   color: crimson;
 }
 
@@ -80,13 +80,25 @@ a {
 .buttons:not(:last-child):nth-last-child(2) {
   -webkit-transition-delay: 75ms;
   transition-delay: 40ms;
-  color: green;
-  background-size: contain;
+  color: darkslateblue;
 }
 
 .buttons:not(:last-child):nth-last-child(3) {
+  -webkit-transition-delay: 75ms;
+  transition-delay: 40ms;
+  color: green;
+  border: black;
+}
+
+.buttons:not(:last-child):nth-last-child(4) {
   -webkit-transition-delay: 100ms;
   transition-delay: 60ms;
+}
+
+.buttons:not(:last-child):nth-last-child(5) {
+  -webkit-transition-delay: 100ms;
+  transition-delay: 60ms;
+  color: gold;
 }
 
 /* Show tooltip content on hover */

@@ -1,8 +1,10 @@
 import React from 'react';
 import './BrowseComics.css';
+import auth from '../../firebaseRequests/auth';
+import comics from '../../firebaseRequests/comics';
 import comicVine from '../../comicVineRequests/comicVine';
-import SearchBar from '../SearchBar/SearchBar';
 import ComicIssue from '../ComicIssue/ComicIssue';
+import SearchBar from '../SearchBar/SearchBar';
 
 class BrowseComics extends React.Component
 {
@@ -10,6 +12,7 @@ class BrowseComics extends React.Component
   {
     issues: [],
     query: '',
+    singleIssue: [],
   }
 
   queryStr = e =>
@@ -29,6 +32,7 @@ class BrowseComics extends React.Component
       .then((res) =>
       {
         this.setState({issues: res[0]});
+        this.props.history.push('/BrowseComics');
       })
       .catch((err) =>
       {
@@ -40,10 +44,21 @@ class BrowseComics extends React.Component
   {
     const comicIssueComponents = this.state.issues.map((comicIssue) =>
     {
+      const singleIssueClick = (e) =>
+      {
+        e.preventDefault();
+        this.setState({singleIssue: comicIssue});
+        comicIssue.uid = auth.getUid();
+        comicIssue.isFavorite = false;
+        comics.saveComicsbyIssue(comicIssue);
+        this.props.history.push(`/MyLibrary/`);
+      };
+
       return (
         <ComicIssue
           issue={comicIssue}
           key={comicIssue.id}
+          singleIssueClick={singleIssueClick}
         />
       );
     });
