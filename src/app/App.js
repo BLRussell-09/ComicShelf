@@ -7,7 +7,7 @@ import fbConnection from '../firebaseRequests/connection';
 import firebase from 'firebase';
 import Login from '../components/Login/Login';
 import MyLibrary from '../components/MyLibrary/MyLibrary';
-import Navbar from '../components/Navbar/Navbar';
+import CNavbar from '../components/Navbar/Navbar';
 import Register from '../components/Register/Register';
 import SplashHome from '../components/SplashHome/SplashHome';
 import SearchBar from '../components/SearchBar/SearchBar';
@@ -86,11 +86,11 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div>
-            <Navbar
+            <CNavbar
               authed={this.state.authed}
               resetNav={this.falseAuth}
             />
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
                 <Switch>
                   <Route
