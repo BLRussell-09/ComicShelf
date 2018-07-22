@@ -47,9 +47,14 @@ class BrowseComics extends React.Component
       const singleIssueClick = (e) =>
       {
         e.preventDefault();
+
+        const doc = new DOMParser().parseFromString(comicIssue.description, 'text/html');
+        const desc = doc.body.textContent;
+
         this.setState({singleIssue: comicIssue});
         comicIssue.uid = auth.getUid();
         comicIssue.isFavorite = false;
+        comicIssue.description = desc;
         comics.saveComicsbyIssue(comicIssue);
         this.props.history.push(`/MyLibrary/`);
       };
@@ -64,7 +69,7 @@ class BrowseComics extends React.Component
     });
 
     return (
-      <div className="BrowseComics">
+      <div className="row BrowseComics">
         <h2>Browse Comics</h2>
         <SearchBar searchApi={this.searchApi} queryStr={this.queryStr}/>
         <div className="row" id="comics">

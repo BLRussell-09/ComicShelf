@@ -1,8 +1,10 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {Navbar} from 'react-bootstrap';
+import {Nav} from 'react-bootstrap';
 import './Navbar.css';
 
-class Navbar extends React.Component
+class CNavbar extends React.Component
 {
   render ()
   {
@@ -15,38 +17,35 @@ class Navbar extends React.Component
 
     return (
       <div className="Navbar">
-        <nav className="navbar navbar-inverse">
+        <Navbar inverse collapseOnSelect>
           <div className="container-fluid">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-                <span className="icon-bar"></span>
-              </button>
-              <Link className="navbar-brand" to="/home">Comic Shelf</Link>
-            </div>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <Navbar.Header>
+              <Navbar.Brand>
+                <Link className="navbar-brand" to="/home">Comic Shelf</Link>
+              </Navbar.Brand>
+              <Navbar.Toggle />
+            </Navbar.Header>
+            <Navbar.Collapse>
               {
                 authed ? (
-                  <ul className="nav navbar-nav navbar-right">
+                  <Nav pullRight>
                     <li><Link to="/browseComics">Browse Comics</Link></li>
                     <li><Link to="/MyLibrary">My Library</Link></li>
                     <li className="navbar-form"><button className="btn btn-warning" onClick={logOut}>Log Out</button></li>
-                  </ul>
+                  </Nav>
                 ) : (
-                  <ul className="nav navbar-nav navbar-right">
+                  <Nav pullRight>
                     <li><Link to="/browseComics">Browse Comics</Link></li>
                     <li><Link to="/login">Log In</Link></li>
-                  </ul>
+                  </Nav>
                 )
               }
-            </div>
+            </Navbar.Collapse>
           </div>
-        </nav>
+        </Navbar>
       </div>
     );
   }
 };
 
-export default Navbar;
+export default CNavbar;

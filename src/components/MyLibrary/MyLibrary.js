@@ -87,8 +87,8 @@ class MyLibrary extends React.Component
       <div className="MyLibrary">
         <div className="row">
           <h2>My Library</h2>
-          <div className="col-xs-12">
-            <div className="col-xs-12">
+          <div className=" col-xs-12">
+            <div className="col-xs-12  mylibbox">
               {comicIssueComponents}
             </div>
           </div>
