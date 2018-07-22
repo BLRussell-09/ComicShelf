@@ -61,6 +61,7 @@ class MyComicIssue extends React.Component
               </p>
             </Modal.Body>
             <Modal.Footer>
+              <Button bsStyle="warning">Save</Button>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>
@@ -69,7 +70,7 @@ class MyComicIssue extends React.Component
     } else
     {
       return (
-        <div className="MyComicIssue col-xs-12">
+        <div className="MyComicIssue col-xs-12 col-md-6 col-lg-3">
           <a href="/" className="thumbnail" onClick={singleIssueClick}>
             <img src={issue.image.original_url} alt={issue.image.name} onClick={this.handleShow}/>
           </a>
@@ -91,6 +92,7 @@ class MyComicIssue extends React.Component
               </p>
             </Modal.Body>
             <Modal.Footer>
+              <Button bsStyle="warning">Save</Button>
               <Button onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>

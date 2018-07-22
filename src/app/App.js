@@ -90,7 +90,7 @@ class App extends Component {
               authed={this.state.authed}
               resetNav={this.falseAuth}
             />
-            <div className="container">
+            <div className="container-fluid">
               <div className="row">
                 <Switch>
                   <Route

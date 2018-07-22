@@ -1,9 +1,17 @@
 .MyLibrary {
-  background-color: #333;
+  background-color: crimson;
   color: black;
 }
 
 .mylibbox {
   height: 50em;
   overflow: scroll;
+  background-color: #333;
+  padding: 1em;
+}
+
+.libContainer {
+  background-color: crimson;
+  padding-left: 2em;
+  padding-right: 2em
 }
