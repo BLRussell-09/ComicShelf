@@ -52,11 +52,14 @@ class BrowseComics extends React.Component
         const desc = doc.body.textContent;
 
         this.setState({singleIssue: comicIssue});
-        comicIssue.uid = auth.getUid();
-        comicIssue.isFavorite = false;
-        comicIssue.description = desc;
-        comics.saveComicsbyIssue(comicIssue);
-        this.props.history.push(`/MyLibrary/`);
+        if (comicIssue.uid !== auth.getUid())
+        {
+          comicIssue.uid = auth.getUid();
+          comicIssue.isFavorite = false;
+          comicIssue.description = desc;
+          comics.saveComicsbyIssue(comicIssue);
+          this.props.history.push(`/MyLibrary/`);
+        }
       };
 
       return (

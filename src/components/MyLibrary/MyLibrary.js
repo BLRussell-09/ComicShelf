@@ -23,12 +23,14 @@ class MyLibrary extends React.Component
 
   render ()
   {
+
     const uid = auth.getUid();
+
     comics.getUserIssues(uid)
       .then((issues) => { this.setState({issues}); })
       .catch((err) => { console.error(err); });
 
-    const comicIssueComponents = this.state.issues.map((comicIssue) =>
+    const comicIssueComponent = this.state.issues.map((comicIssue) =>
     {
       const singleIssueClick = (e) =>
       {
@@ -88,16 +90,16 @@ class MyLibrary extends React.Component
         <div className="row">
           <h2>My Library</h2>
           <div className="col-xs-12 libContainer">
-            <div className="col-xs-12 col-md-6 mylibbox">
+            <div className="col-xs-12 col-md-12 col-lg-6 mylibbox">
               <h2>My Library</h2>
               <div className="col-xs-12">
-                {comicIssueComponents}
+                {comicIssueComponent}
               </div>
             </div>
             <div className="col-xs-12 col-md-4 col-md-offset-2 mylibbox">
               <h2>My Favorites</h2>
               <div className="col-xs-12">
-                {comicIssueComponents}
+                Issues Coming
               </div>
             </div>
           </div>
