@@ -10,8 +10,8 @@ class MyComicIssue extends React.Component
 
     this.handleShow = this.handleShow.bind(this);
     this.handleClose = this.handleClose.bind(this);
-    this.handleShowReview = this.handleShow.bind(this);
-    this.handleCloseReview = this.handleClose.bind(this);
+    this.handleShowReview = this.handleShowReview.bind(this);
+    this.handleCloseReview = this.handleCloseReview.bind(this);
 
     this.state = {
       show: false,
