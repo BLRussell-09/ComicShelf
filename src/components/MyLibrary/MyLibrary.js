@@ -17,7 +17,8 @@ class MyLibrary extends React.Component
   {
     const uid = auth.getUid();
     comics.getUserIssues(uid)
-      .then((issues) => { this.setState({issues}); })
+      .then((issues) => { this.setState({issues});
+      })
       .catch((err) => { console.error(err); });
   }
 
@@ -27,7 +28,25 @@ class MyLibrary extends React.Component
     const uid = auth.getUid();
 
     comics.getUserIssues(uid)
-      .then((issues) => { this.setState({issues}); })
+      .then((issues) =>
+      {
+        issues.sort((a,b) =>
+        {
+          if (a.title < b.title)
+          {
+            return -1;
+          }
+          else if (a.title > b.title)
+          {
+            return 1;
+          }
+          else
+          {
+            return 0;
+          }
+        });
+        this.setState({issues});
+      })
       .catch((err) => { console.error(err); });
 
     const comicIssueComponent = this.state.issues.map((comicIssue) =>
