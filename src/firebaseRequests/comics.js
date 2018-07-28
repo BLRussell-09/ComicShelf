@@ -26,14 +26,6 @@ const getUserIssues = (uid) =>
           {
             res.data[fbKey].firebaseId = fbKey;
             comicIssues.push(res.data[fbKey]);
-            comicIssues.sort((a,b) =>
-            {
-              if (a.volume.name < b.volume.name)
-                return -1;
-              if (a.volume.name > b.volume.name)
-                return 1;
-              return 0;
-            });
           });
         }
         resolve(comicIssues);

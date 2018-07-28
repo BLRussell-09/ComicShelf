@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button} from 'react-bootstrap';
 import {Modal} from 'react-bootstrap';
+import Characters from '../Characters/Characters';
 import './MyComicIssue.css';
 
 class MyComicIssue extends React.Component
@@ -49,6 +50,12 @@ class MyComicIssue extends React.Component
     const issueTitle =  `${issue.title}`;
     const {favIssueClick} = this.props;
     const {rmvIssueClick} = this.props;
+    const charactersComponent = this.props.characters.map((character) =>
+    {
+      return (
+        <Characters character={character}/>
+      );
+    });
 
     if (!issue.isFavorite)
     {
@@ -72,9 +79,18 @@ class MyComicIssue extends React.Component
             </Modal.Header>
             <Modal.Body>
               <h4><img src={issueCover} alt={issueAlt} /></h4>
-              <p>
-                {issue.description}
-              </p>
+              <div className="row">
+                <h3>Synopsis</h3>
+                <div className="col-xs-12">
+                  <p>
+                    {issue.description}
+                  </p>
+                </div>
+              </div>
+              <div className="row">
+                <h3>Characters</h3>
+                {charactersComponent};
+              </div>
             </Modal.Body>
             <Modal.Footer>
               <Button bsStyle="warning">Save</Button>
@@ -103,9 +119,18 @@ class MyComicIssue extends React.Component
             </Modal.Header>
             <Modal.Body>
               <h4><img src={issueCover} alt={issueAlt} /></h4>
-              <p>
-                {issue.description}
-              </p>
+              <div className="row">
+                <h3>Synopsis</h3>
+                <div className="col-xs-12">
+                  <p>
+                    {issue.description}
+                  </p>
+                </div>
+              </div>
+              <div className="row">
+                <h3>Characters</h3>
+                {charactersComponent};
+              </div>
             </Modal.Body>
             <Modal.Footer>
               <Button bsStyle="warning">Save</Button>

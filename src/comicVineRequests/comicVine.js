@@ -58,4 +58,17 @@ const getIssues = (query) =>
   });
 };
 
-export default {getIssues};
+const getCharacters = (characterUrl) =>
+{
+  return new Promise ((resolve, reject) =>
+  {
+    axios(`${characterUrl}?apikey=${constants.marvelApiConfig.apiKey}`)
+      .then((characters) =>
+      {
+        resolve(characters.data.data.results);
+      })
+      .catch((err) => { reject(err); });
+  });
+};
+
+export default {getIssues, getCharacters};
