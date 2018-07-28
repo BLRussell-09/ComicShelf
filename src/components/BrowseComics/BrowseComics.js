@@ -31,7 +31,7 @@ class BrowseComics extends React.Component
       .getIssues(query)
       .then((res) =>
       {
-        this.setState({issues: res[0]});
+        this.setState({issues: res});
         this.props.history.push('/BrowseComics');
       })
       .catch((err) =>

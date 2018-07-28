@@ -7,7 +7,7 @@ const getIssues = (query) =>
 {
   return new Promise ((resolve, reject) =>
   {
-    axios(`${constants.comicVineConfig.databaseURL}%22${query}%22`)
+    axios(`${constants.marvelApiConfig.titleSearchURL}${query}&apikey=${constants.marvelApiConfig.apiKey}`)
       .then((res) =>
       {
         comics
@@ -15,23 +15,40 @@ const getIssues = (query) =>
           .then((myIssues) =>
           {
             const comics = [];
-            res.data.results.forEach(issue =>
+            if (myIssues.length !== 0)
             {
-              myIssues.forEach(myIssue =>
+              const comicIds = [];
+              console.error(res.data.data.results);
+              const gotComics = res.data.data.results;
+              myIssues.map((issue) =>
               {
-                while (issue.id === myIssue.id)
+                return comicIds.push(issue.id);
+              });
+              gotComics.forEach(comicIssue =>
+              {
+                if (!comicIds.includes(comicIssue.id))
                 {
-                  if (issue.id === myIssue.id)
-                  {
-                    issue.isOwned = true;
-                    console.error(issue);
-                    comics.push(res.data.results);
-                    break;
-                  }
+                  comicIssue.isOwned = false;
+                  comics.push(comicIssue);
+                }
+                else
+                {
+                  comicIssue.isOwned = true;
+                  comics.push(comicIssue);
                 }
               });
-            });
-            resolve(comics);
+              resolve(comics);
+            }
+            else
+            {
+              const gotComics = res.data.data.results;
+              gotComics.forEach(comicIssue =>
+              {
+                comicIssue.isOwned = false;
+                comics.push(comicIssue);
+              });
+              resolve(comics);
+            };
           });
       })
       .catch((err) =>
