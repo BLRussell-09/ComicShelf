@@ -2,6 +2,7 @@ import React from 'react';
 import './MyLibrary.css';
 import auth from '../../firebaseRequests/auth';
 import comics from '../../firebaseRequests/comics';
+import comicVine from '../../comicVineRequests/comicVine';
 import MyComicIssue from '../MyComicIssue/MyComicIssue';
 
 class MyLibrary extends React.Component
@@ -11,6 +12,7 @@ class MyLibrary extends React.Component
   {
     issues: [],
     singleIssue: [],
+    characters: [],
   }
 
   componentDidMount ()
@@ -54,6 +56,21 @@ class MyLibrary extends React.Component
       const singleIssueClick = (e) =>
       {
         e.preventDefault();
+        const characters = [];
+        if (comicIssue.characters.available > 0)
+        {
+          const comicCharacters = comicIssue.characters.items;
+          comicCharacters.forEach(character =>
+          {
+            comicVine.getCharacters(character.resourceURI)
+              .then((results) =>
+              {
+                characters.push(results);
+              })
+              .catch((err) => { console.error(err); });
+          });
+        }
+        this.setState({characters});
         this.setState({singleIssue: comicIssue});
       };
 
@@ -96,6 +113,7 @@ class MyLibrary extends React.Component
       return (
         <MyComicIssue
           issue={comicIssue}
+          characters={this.state.characters}
           key={comicIssue.id}
           singleIssueClick={singleIssueClick}
           favIssueClick={favIssueClick}
