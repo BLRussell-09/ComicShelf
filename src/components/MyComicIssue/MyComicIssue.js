@@ -44,6 +44,9 @@ class MyComicIssue extends React.Component
   {
     const {issue} = this.props;
     const {singleIssueClick} = this.props;
+    const issueCover = `${issue.thumbnail.path}.${issue.thumbnail.extension}`;
+    const issueAlt = `${issue.title}`;
+    const issueTitle =  `${issue.title}`;
     const {favIssueClick} = this.props;
     const {rmvIssueClick} = this.props;
 
@@ -52,27 +55,12 @@ class MyComicIssue extends React.Component
       return (
         <div className="MyComicIssue col-xs-12 col-sm-6 col-md-3 col-lg-3">
           <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img src={issue.image.original_url} alt={issue.image.name} onClick={this.handleShow}/>
+            <img src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
           </a>
           <nav className="navContainer">
             <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="Favorite">star</li>
-            <li className="buttons material-icons md-48" onClick={this.handleShowReview} tooltip="Add Review">
+            <li className="buttons material-icons md-48" onClick={this.handleShow} tooltip="Add Review">
               library_add
-              <Modal show={this.state.show2} onHide={this.handleCloseReview}>
-                <Modal.Header closeButton>
-                  <Modal.Title>{issue.volume.name}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                  <h4><img src={issue.image.small_url} alt={issue.image.name} /></h4>
-                  <p>
-                    Review it!
-                  </p>
-                </Modal.Body>
-                <Modal.Footer>
-                  <Button bsStyle="warning">Save</Button>
-                  <Button onClick={this.handleCloseReview}>Close</Button>
-                </Modal.Footer>
-              </Modal>
             </li>
             <li className="buttons material-icons md-48" tooltip="View Covers">insert_photo</li>
             <li className="buttons material-icons md-48" onClick={rmvIssueClick} tooltip="Remove from Library">cancel</li>
@@ -80,10 +68,10 @@ class MyComicIssue extends React.Component
           </nav>
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>{issue.volume.name}</Modal.Title>
+              <Modal.Title>{issueTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h4><img src={issue.image.small_url} alt={issue.image.name} /></h4>
+              <h4><img src={issueCover} alt={issueAlt} /></h4>
               <p>
                 {issue.description}
               </p>
@@ -100,7 +88,7 @@ class MyComicIssue extends React.Component
       return (
         <div className="MyComicIssue col-xs-12 col-sm-6 col-md-3 col-lg-3">
           <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img src={issue.image.original_url} alt={issue.image.name} onClick={this.handleShow}/>
+            <img src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
           </a>
           <nav className="navContainer">
             <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="un-Favorite" style={{color: 'red'}}>report</li>
@@ -111,10 +99,10 @@ class MyComicIssue extends React.Component
           </nav>
           <Modal show={this.state.show} onHide={this.handleClose}>
             <Modal.Header closeButton>
-              <Modal.Title>{issue.volume.name}</Modal.Title>
+              <Modal.Title>{issueTitle}</Modal.Title>
             </Modal.Header>
             <Modal.Body>
-              <h4><img src={issue.image.small_url} alt={issue.image.name} /></h4>
+              <h4><img src={issueCover} alt={issueAlt} /></h4>
               <p>
                 {issue.description}
               </p>

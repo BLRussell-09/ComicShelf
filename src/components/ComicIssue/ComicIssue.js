@@ -14,13 +14,15 @@ class ComicIssue extends React.Component
   {
     const {issue} = this.props;
     const {singleIssueClick} = this.props;
+    const issueCover = `${issue.thumbnail.path}.${issue.thumbnail.extension}`;
+    const issueAlt = `${issue.title}`;
 
     if (!issue.isOwned)
     {
       return (
         <div className="ComicIssue col-xs-3">
           <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img src={issue.image.original_url} alt={issue.image.name}/>
+            <img src={issueCover} alt={issueAlt}/>
           </a>
           <nav className="navContainer">
             <li className="buttons material-icons md-48" onClick={singleIssueClick} tooltip="Save to Library">
@@ -37,7 +39,7 @@ class ComicIssue extends React.Component
       return (
         <div className="ComicIssue col-xs-3">
           <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img src={issue.image.original_url} alt={issue.image.name}/>
+            <img src={issueCover} alt={issueAlt}/>
           </a>
           <nav className="navContainer">
             <li className="buttons material-icons md-48" tooltip="You already own this issue">

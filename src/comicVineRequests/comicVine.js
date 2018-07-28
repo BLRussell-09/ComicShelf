@@ -7,7 +7,7 @@ const getIssues = (query) =>
 {
   return new Promise ((resolve, reject) =>
   {
-    axios(`${constants.comicVineConfig.databaseURL}%22${query}%22`)
+    axios(`${constants.marvelApiConfig.titleSearchURL}${query}&apikey=${constants.marvelApiConfig.apiKey}`)
       .then((res) =>
       {
         comics
@@ -18,7 +18,8 @@ const getIssues = (query) =>
             if (myIssues.length !== 0)
             {
               const comicIds = [];
-              const gotComics = res.data.results;
+              console.error(res.data.data.results);
+              const gotComics = res.data.data.results;
               myIssues.map((issue) =>
               {
                 return comicIds.push(issue.id);
@@ -40,7 +41,7 @@ const getIssues = (query) =>
             }
             else
             {
-              const gotComics = res.data.results;
+              const gotComics = res.data.data.results;
               gotComics.forEach(comicIssue =>
               {
                 comicIssue.isOwned = false;
