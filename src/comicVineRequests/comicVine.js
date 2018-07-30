@@ -18,7 +18,6 @@ const getIssues = (query) =>
             if (myIssues.length !== 0)
             {
               const comicIds = [];
-              console.error(res.data.data.results);
               const gotComics = res.data.data.results;
               myIssues.map((issue) =>
               {
@@ -71,4 +70,17 @@ const getCharacters = (characterUrl) =>
   });
 };
 
-export default {getIssues, getCharacters};
+const getCharactersbyName = (characterName) =>
+{
+  return new Promise ((resolve, reject) =>
+  {
+    axios(`${constants.marvelApiConfig.characterSearchURL}${characterName}&apikey=${constants.marvelApiConfig.apiKey}`)
+      .then((characters) =>
+      {
+        resolve(characters.data.data.results);
+      })
+      .catch((err) => { reject(err); });
+  });
+};
+
+export default {getIssues, getCharacters, getCharactersbyName};

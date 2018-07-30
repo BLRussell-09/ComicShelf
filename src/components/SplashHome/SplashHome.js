@@ -1,46 +1,41 @@
 import React from 'react';
 import './SplashHome.css';
-import SearchBar from '../SearchBar/SearchBar';
 import comicVine from '../../comicVineRequests/comicVine';
+import Character from '../Character/Character';
 
 class SplashHome extends React.Component
 {
   state =
   {
-    issues: [],
-    query: '',
+    characters: ['Wolverine', 'Storm', 'Hulk', 'Captain%20America', 'Iron%20Man', 'Spider-Man', 'Thanos', 'Thor'],
+    character: [],
   }
 
-  queryStr = e =>
+  componentDidMount ()
   {
-    let tempQuery = {...this.state.query};
-    const query = e.target.value;
-    tempQuery = query.split(' ').join('%20');;
-    this.setState({query: tempQuery});
-  };
-
-  searchApi = e =>
-  {
-    const {query} = this.state;
-    e.preventDefault();
-    comicVine
-      .getIssues(query)
-      .then((res) =>
-      {
-        this.props.history.push('/BrowseComics');
-      })
-      .catch((err) =>
-      {
-        console.error(err);
-      });
-  };
+    const characters = {...this.state.characters};
+    const randomNumber = Math.floor(Math.random() * 8) + 0;
+    comicVine.getCharactersbyName(characters[randomNumber])
+      .then((character) => { this.setState({character}); })
+      .catch((err) => { console.error(err); });
+  }
 
   render ()
   {
+    const comicCharacterComponent = this.state.character.map((character) =>
+    {
+      return (
+        <Character  character={this.state.character} key={character.id}/>
+      );
+    });
     return (
       <div className="SplashHome">
-        <h2>Splash Home</h2>
-        <SearchBar searchApi={this.searchApi} queryStr={this.queryStr}/>
+        <h2>Home</h2>
+        <div className="row">
+          <div className="col-xs-12 characterContainer">
+            {comicCharacterComponent}
+          </div>
+        </div>
       </div>
     );
   }

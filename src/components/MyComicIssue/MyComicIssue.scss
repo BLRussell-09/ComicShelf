@@ -9,7 +9,7 @@
 
 .thumbnail {
   margin-top: 1em;
-  height: 22em;
+  height: 20em;
   color: black;
 }
 
@@ -81,13 +81,13 @@ a {
 .buttons:not(:last-child):nth-last-child(2) {
   -webkit-transition-delay: 75ms;
   transition-delay: 40ms;
-  color: darkslateblue;
+  color: red;
 }
 
 .buttons:not(:last-child):nth-last-child(3) {
   -webkit-transition-delay: 75ms;
   transition-delay: 40ms;
-  color: green;
+  color: gold;
   border: black;
 }
 
