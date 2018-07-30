@@ -20,9 +20,9 @@ class SearchBar extends React.Component
   {
     return (
       <div className="SearchBar row">
-        <div className="col-lg-6">
+        <div>
           <div className="input-group">
-            <input type="text" className="form-control" onKeyPress={this.handleKeys} onChange={this.props.queryStr} placeholder="Search for..."/>
+            <input type="text" className="form-control" onKeyPress={this.handleKeys} onChange={this.props.queryStr} placeholder="Search the Marvel Database..."/>
             <span className="input-group-btn">
               <button className="btn btn-default" onClick={this.props.searchApi} type="button" >Go!</button>
             </span>

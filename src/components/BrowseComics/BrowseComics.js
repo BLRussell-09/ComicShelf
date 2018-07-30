@@ -19,7 +19,7 @@ class BrowseComics extends React.Component
   {
     let tempQuery = {...this.state.query};
     const query = e.target.value;
-    tempQuery = query.split(' ').join('%20');;
+    tempQuery = query.split(' ').join('%20');
     this.setState({query: tempQuery});
   };
 
@@ -57,6 +57,7 @@ class BrowseComics extends React.Component
           comicIssue.uid = auth.getUid();
           comicIssue.isFavorite = false;
           comicIssue.description = desc;
+          comicIssue.userReview = 'There is nothing here yet';
           comics.saveComicsbyIssue(comicIssue);
           this.props.history.push(`/MyLibrary/`);
         }
@@ -74,7 +75,11 @@ class BrowseComics extends React.Component
     return (
       <div className="row BrowseComics">
         <h2>Browse Comics</h2>
-        <SearchBar searchApi={this.searchApi} queryStr={this.queryStr}/>
+        <div className="row">
+          <div className="col-xs-6 col-xs-offset-3">
+            <SearchBar searchApi={this.searchApi} queryStr={this.queryStr}/>
+          </div>
+        </div>
         <div className="row" id="comics">
           {comicIssueComponents}
         </div>

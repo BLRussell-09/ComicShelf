@@ -108,7 +108,7 @@ class App extends Component {
                     component={MyLibrary}
                     path='/myLibrary'
                   />
-                  <Route
+                  <PrivateRoute
                     authed={this.state.authed}
                     component={BrowseComics}
                     path='/browseComics'
