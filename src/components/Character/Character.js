@@ -9,6 +9,8 @@ class Character extends React.Component
     const characterName = `${character[0].name}`;
     const characterThumb = `${character[0].thumbnail.path}.${character[0].thumbnail.extension}`;
     const characterDesc = `${character[0].description}`;
+    const chararacterIssues = character[0].comics.items;
+    console.error(chararacterIssues);
     return (
       <div className="col-md-12 Character">
         <div className="row">
