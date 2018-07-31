@@ -12,6 +12,30 @@ const saveComicsbyIssue = (comicIssue) =>
   });
 };
 
+const getAllIssues = () =>
+{
+  return new Promise((resolve, reject) =>
+  {
+    axios
+      .get(`${constants.firebaseConfig.databaseURL}/comicIssue.json?`)
+      .then((res) =>
+      {
+        const comicIssues = [];
+        if (res.data !== null)
+        {
+          Object.keys(res.data).forEach(fbKey =>
+          {
+            res.data[fbKey].firebaseId = fbKey;
+            comicIssues.push(res.data[fbKey]);
+          });
+        }
+        console.error(comicIssues);
+        resolve(comicIssues);
+      })
+      .catch((err) => { reject(err); });
+  });
+};
+
 const getUserIssues = (uid) =>
 {
   return new Promise((resolve, reject) =>
@@ -56,4 +80,4 @@ const deleteUserIssue = (firebaseId) =>
   });
 };
 
-export default {deleteUserIssue, getUserIssues, saveComicsbyIssue, updateUserIssue};
+export default {deleteUserIssue, getAllIssues, getUserIssues, saveComicsbyIssue, updateUserIssue};
