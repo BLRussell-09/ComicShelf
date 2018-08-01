@@ -4,6 +4,7 @@ import auth from '../../firebaseRequests/auth';
 import comics from '../../firebaseRequests/comics';
 import comicVine from '../../comicVineRequests/comicVine';
 import MyComicIssue from '../MyComicIssue/MyComicIssue';
+import FavoriteIssues from '../FavoriteIssues/FavoriteIssues';
 
 class MyLibrary extends React.Component
 {
@@ -164,103 +165,12 @@ class MyLibrary extends React.Component
 
     const favIssueComponent = this.state.issues.map((comicIssue) =>
     {
-      const singleIssueClick = (e) =>
-      {
-        e.preventDefault();
-        const characters = [];
-        if (comicIssue.characters.available > 0)
-        {
-          const comicCharacters = comicIssue.characters.items;
-          comicCharacters.forEach(character =>
-          {
-            comicVine.getCharacters(character.resourceURI)
-              .then((results) =>
-              {
-                characters.push(results);
-              })
-              .catch((err) => { console.error(err); });
-          });
-        }
-        this.setState({characters});
-        this.setState({singleIssue: comicIssue});
-      };
-
-      const favIssueClick = (e) =>
-      {
-        e.preventDefault();
-        this.setState({singleIssue: comicIssue});
-        const updatedIssue = comicIssue;
-        if (!updatedIssue.isFavorite)
-        {
-          updatedIssue.isFavorite = true;
-        }
-        else
-        {
-          updatedIssue.isFavorite = false;
-        }
-        comics.updateUserIssue(updatedIssue.firebaseId, updatedIssue)
-          .then(() =>
-          {
-            comics.getUserIssues(uid)
-              .then((issues) => { this.setState({issues}); });
-          })
-          .catch((err) => { console.error(err); });
-      };
-
-      const rmvIssueClick = (e) =>
-      {
-        e.preventDefault();
-        this.setState({singleIssue: comicIssue});
-        const firebaseId = comicIssue.firebaseId;
-        comics.deleteUserIssue(firebaseId)
-          .then(() =>
-          {
-            comics.getUserIssues(uid)
-              .then((issues) => { this.setState({issues}); });
-          })
-          .catch((err) => { console.error(err); });
-      };
-
-      const reviewIssueClick = (e) =>
-      {
-        e.preventDefault();
-        const reviewBtn = document.querySelector('.reviewReveal');
-        const reviewForm = document.querySelector('#reviewForm');
-        reviewBtn.classList.add('hidden');
-        reviewForm.classList.remove('hidden');
-      };
-
-      const saveReviewClick = (e) =>
-      {
-        e.preventDefault();
-        this.setState({singleIssue: comicIssue});
-        const updatedIssue = comicIssue;
-        updatedIssue.userReview = this.state.userReview;
-        comics.updateUserIssue(updatedIssue.firebaseId, updatedIssue)
-          .then(() =>
-          {
-            comics.getUserIssues(uid)
-              .then((issues) => { this.setState({issues}); });
-          })
-          .catch((err) => { console.error(err); });
-        const reviewBtn = document.querySelector('.reviewReveal');
-        const reviewForm = document.querySelector('#reviewForm');
-        reviewBtn.classList.remove('hidden');
-        reviewForm.classList.add('hidden');
-      };
       if (comicIssue.isFavorite)
       {
         return (
-          <MyComicIssue
+          <FavoriteIssues
             issue={comicIssue}
-            characters={this.state.characters}
             key={comicIssue.id}
-            singleIssueClick={singleIssueClick}
-            favIssueClick={favIssueClick}
-            rmvIssueClick={rmvIssueClick}
-            reviewStr={this.reviewStr}
-            reviewIssueClick={reviewIssueClick}
-            saveReviewClick={saveReviewClick}
           />
         );
       }

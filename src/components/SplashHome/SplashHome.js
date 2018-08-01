@@ -4,6 +4,7 @@ import comics from '../../firebaseRequests/comics';
 import comicVine from '../../comicVineRequests/comicVine';
 import Character from '../Character/Character';
 import CollectedComics from '../CollectedComics/CollectedComics';
+// import ComicIssue from '../ComicIssue/ComicIssue';
 
 class SplashHome extends React.Component
 {
@@ -12,6 +13,7 @@ class SplashHome extends React.Component
     characters: ['Wolverine', 'Storm', 'Hulk', 'Captain%20America', 'Iron%20Man', 'Spider-Man', 'Thanos', 'Thor'],
     character: [],
     issues: [],
+    featuredIssues: [],
   }
 
   componentDidMount ()
@@ -33,6 +35,19 @@ class SplashHome extends React.Component
   {
     const comicCharacterComponent = this.state.character.map((character) =>
     {
+      const featIssues = [];
+      const characterIssues = character.comics.items;
+      characterIssues.forEach(issue =>
+      {
+        comicVine.getIssuesbyCharacter(issue.resourceURI)
+          .then((res) =>
+          {
+            console.error(res);
+            featIssues.push(res);
+          })
+          .catch((err) => { console.error(err); });
+      });
+      this.setState({featuredIssues: featIssues});
       return (
         <Character  character={this.state.character} key={character.id}/>
       );
@@ -45,6 +60,13 @@ class SplashHome extends React.Component
       );
     });
 
+    // const comicIssueComponent = this.state.featuredIssues.map((issue) =>
+    // {
+    //   return (
+    //     <ComicIssue key={issue.id} issue={issue}/>
+    //   );
+    // });
+
     return (
       <div className="SplashHome">
         <h2>Home</h2>
@@ -52,9 +74,12 @@ class SplashHome extends React.Component
           <div className="col-xs-6 characterContainer">
             {comicCharacterComponent}
           </div>
+          {/* <div className="col-xs-6">
+            {comicIssueComponent}
+          </div> */}
           <div className="row">
             <div className="col-xs-12">
-              <h3>Comics Collected</h3>
+              <h3>Reccomended Reading</h3>
               {collectedComicsComponent}
             </div>
           </div>
