@@ -83,4 +83,17 @@ const getCharactersbyName = (characterName) =>
   });
 };
 
-export default {getIssues, getCharacters, getCharactersbyName};
+const getIssuesbyCharacter = (characterURI) =>
+{
+  return new Promise ((resolve, reject) =>
+  {
+    axios(`${characterURI}?apikey=${constants.marvelApiConfig.apiKey}`)
+      .then((issues) =>
+      {
+        resolve(issues.data.data.results);
+      })
+      .catch((err) => { reject(err); });
+  });
+};
+
+export default {getIssues, getIssuesbyCharacter, getCharacters, getCharactersbyName};

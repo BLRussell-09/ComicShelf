@@ -29,7 +29,6 @@ const getAllIssues = () =>
             comicIssues.push(res.data[fbKey]);
           });
         }
-        console.error(comicIssues);
         resolve(comicIssues);
       })
       .catch((err) => { reject(err); });

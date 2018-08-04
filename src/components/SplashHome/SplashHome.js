@@ -4,6 +4,7 @@ import comics from '../../firebaseRequests/comics';
 import comicVine from '../../comicVineRequests/comicVine';
 import Character from '../Character/Character';
 import CollectedComics from '../CollectedComics/CollectedComics';
+// import ComicIssue from '../ComicIssue/ComicIssue';
 
 class SplashHome extends React.Component
 {
@@ -12,6 +13,7 @@ class SplashHome extends React.Component
     characters: ['Wolverine', 'Storm', 'Hulk', 'Captain%20America', 'Iron%20Man', 'Spider-Man', 'Thanos', 'Thor'],
     character: [],
     issues: [],
+    featuredIssues: [],
   }
 
   componentDidMount ()
@@ -31,17 +33,47 @@ class SplashHome extends React.Component
 
   render ()
   {
+    const featIssues = [];
+    const demIssues = [];
+
     const comicCharacterComponent = this.state.character.map((character) =>
     {
+      const characterItems = character.comics.items;
+      featIssues.push(characterItems);
       return (
         <Character  character={this.state.character} key={character.id}/>
       );
+    });
+
+    featIssues.map((issue) =>
+    {
+      issue.forEach(element =>
+      {
+        comicVine.getIssuesbyCharacter(element.resourceURI)
+          .then((res) =>
+          {
+            demIssues.push(`${res[0].thumbnail.path}.${res[0].thumbnail.extension}`);
+            if (demIssues.length === 6)
+            {
+              demIssues.shift();
+            }
+          })
+          .catch((err) => { console.error(err); });
+      });
+      console.error(demIssues);
     });
 
     const collectedComicsComponent = this.state.issues.map((issue) =>
     {
       return (
         <CollectedComics key={issue.firebaseId} issue={issue}/>
+      );
+    });
+
+    const featCoversComponent = demIssues.map((issue) =>
+    {
+      return (
+        <img src={issue} alt="featCover"/>
       );
     });
 
@@ -52,9 +84,12 @@ class SplashHome extends React.Component
           <div className="col-xs-6 characterContainer">
             {comicCharacterComponent}
           </div>
+          <div className="col-xs-6">
+            {featCoversComponent}
+          </div>
           <div className="row">
             <div className="col-xs-12">
-              <h3>Comics Collected</h3>
+              <h3>Reccomended Reading</h3>
               {collectedComicsComponent}
             </div>
           </div>

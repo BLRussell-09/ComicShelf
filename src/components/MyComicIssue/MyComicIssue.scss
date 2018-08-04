@@ -1,5 +1,9 @@
 .MyComicIssue {
-  color: crimson;
+  color: white;
+}
+
+img.myLib {
+  height: 19em;
 }
 
 .thumbnail img {
@@ -75,7 +79,7 @@ a {
 .buttons:nth-last-child(1) {
   -webkit-transition-delay: 25ms;
           transition-delay: 25ms;
-  background-color: white;
+  background-color: crimson;
 }
 
 .buttons:not(:last-child):nth-last-child(2) {
