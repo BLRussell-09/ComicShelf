@@ -9,7 +9,7 @@ class FavoriteIssues extends React.Component
     const imgSrc = `${issue.images[0].path}.${issue.images[0].extension}`;
     return (
       <div className="col-xs-12">
-        <img src={imgSrc} alt={issue.title}/>
+        <img className='favorites' src={imgSrc} alt={issue.title}/>
       </div>
     );
   }

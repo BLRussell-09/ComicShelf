@@ -1,0 +1,11 @@
+img.collection {
+  margin-top: 1em;
+  height: 20em;
+  max-height: 40em;
+  border: 1px black solid;
+}
+
+img.collection:hover {
+  width: auto;
+  height: 35em;
+}

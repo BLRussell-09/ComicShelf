@@ -1,8 +1,8 @@
-img {
+img.favorites {
   margin-top: 1em;
 }
 
-img:hover {
-  transform: rotateY(360deg);
-  transition: transform 6s;
+img.favorites:hover {
+  width: auto;
+  height: 35em;
 }

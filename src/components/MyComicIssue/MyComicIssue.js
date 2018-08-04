@@ -64,7 +64,7 @@ class MyComicIssue extends React.Component
       return (
         <div className="MyComicIssue col-xs-12 col-sm-6 col-md-4 col-lg-4">
           <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
+            <img className='myLib' src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
           </a>
           <nav className="navContainer">
             <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="Favorite">star</li>
@@ -121,7 +121,7 @@ class MyComicIssue extends React.Component
       return (
         <div className="MyComicIssue col-xs-12 col-sm-6 col-md-4 col-lg-4">
           <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
+            <img className='myLib' src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
           </a>
           <nav className="navContainer">
             <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="un-Favorite" style={{color: 'orange'}}>report</li>
