@@ -1,9 +1,32 @@
+.favs {
+  background-color: white;
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  color: black;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-around;
+  height: 30em;
+  overflow: scroll;
+  padding: 2em;
+  padding-top: 0;
+}
+.favheader {
+  color: black;
+  background-color: white;
+  border-left: 1px solid black;
+  border-right: 1px solid black;
+  border-top: 1px solid black;
+}
+
 .MyLibrary {
   background-color: crimson;
   color: white;
 }
 
 .mylibbox {
+  margin-top: 2em;
   height: 50em;
   overflow: scroll;
   background-color: #333;

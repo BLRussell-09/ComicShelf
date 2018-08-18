@@ -7,9 +7,9 @@
   width: auto;
 }
 
-.thumbnail {
-  margin-top: 1em;
-  height: 333px;
+.browse {
+  margin-top: 1em !important;
+  height: 24em !important;
 }
 
 img {
@@ -78,7 +78,8 @@ a {
 .buttons:nth-last-child(1) {
   -webkit-transition-delay: 25ms;
           transition-delay: 25ms;
-  background-color: white;
+  background-color: crimson;
+  color: white;
 }
 
 .buttons:not(:last-child):nth-last-child(2) {

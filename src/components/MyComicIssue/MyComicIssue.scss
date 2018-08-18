@@ -6,7 +6,7 @@ img.myLib {
   height: 19em;
 }
 
-.thumbnail img {
+.thumb img {
   display: block;
   width: auto;
 }
@@ -15,13 +15,15 @@ img.myLib {
   margin-top: 1em;
   height: 20em;
   color: black;
+  display: inline-grid;
 }
 
 .navContainer {
   bottom: 0;
   position: absolute;
   margin: 1em;
-  right: 0px;
+  bottom: 1.2em;
+  right: 4em;
   z-index: 9 !important;
 }
 

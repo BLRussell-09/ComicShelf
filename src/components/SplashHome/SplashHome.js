@@ -38,8 +38,6 @@ class SplashHome extends React.Component
 
     const comicCharacterComponent = this.state.character.map((character) =>
     {
-      const characterItems = character.comics.items;
-      featIssues.push(characterItems);
       return (
         <Character  character={this.state.character} key={character.id}/>
       );
@@ -61,6 +59,7 @@ class SplashHome extends React.Component
           .catch((err) => { console.error(err); });
       });
       console.error(demIssues);
+      return (demIssues);
     });
 
     const collectedComicsComponent = this.state.issues.map((issue) =>
@@ -79,9 +78,8 @@ class SplashHome extends React.Component
 
     return (
       <div className="SplashHome">
-        <h2>Home</h2>
         <div className="row">
-          <div className="col-xs-6 characterContainer">
+          <div className="col-xs-6 col-xs-offset-3 characterContainer">
             {comicCharacterComponent}
           </div>
           <div className="col-xs-6">

@@ -93,6 +93,7 @@ class App extends Component {
             <div className="container-fluid">
               <div className="row">
                 <Switch>
+                  <Route path="/" exact component={SplashHome}/>
                   <Route
                     authed={this.state.authed}
                     component={SplashHome}
