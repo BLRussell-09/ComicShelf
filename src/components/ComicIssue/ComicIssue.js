@@ -21,7 +21,7 @@ class ComicIssue extends React.Component
     {
       return (
         <div className="ComicIssue col-xs-3">
-          <a href="/" className="thumbnail" onClick={singleIssueClick}>
+          <a href="/" className="thumbnail browse" onClick={singleIssueClick}>
             <img src={issueCover} alt={issueAlt}/>
           </a>
           <nav className="navContainer">
@@ -38,7 +38,7 @@ class ComicIssue extends React.Component
     {
       return (
         <div className="ComicIssue col-xs-3">
-          <a href="/" className="thumbnail" onClick={singleIssueClick}>
+          <a href="/" className="thumbnail browse" onClick={singleIssueClick}>
             <img src={issueCover} alt={issueAlt}/>
           </a>
           <nav className="navContainer">

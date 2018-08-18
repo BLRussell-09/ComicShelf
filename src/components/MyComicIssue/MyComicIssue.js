@@ -62,113 +62,117 @@ class MyComicIssue extends React.Component
     if (!issue.isFavorite)
     {
       return (
-        <div className="MyComicIssue col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img className='myLib' src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
-          </a>
-          <nav className="navContainer">
-            <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="Favorite">star</li>
-            <li className="buttons material-icons md-48" onClick={rmvIssueClick} tooltip="Remove from Library">cancel</li>
-            <i onClick={this.hoverClick}className="buttons material-icons md-48">add</i>
-          </nav>
-          <Modal show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>{issueTitle}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h4><img src={issueCover} alt={issueAlt} /></h4>
-              <div className="row">
-                <div className="col-xs-12">
-                  <h3>Synopsis</h3>
-                  <p>
-                    {issue.description}
-                  </p>
+        <div className="MyComicIssue col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div className="thumb">
+            <a href="/" className="thumbnail" onClick={singleIssueClick}>
+              <img className='myLib' src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
+            </a>
+            <nav className="navContainer">
+              <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="Favorite">star</li>
+              <li className="buttons material-icons md-48" onClick={rmvIssueClick} tooltip="Remove from Library">cancel</li>
+              <i onClick={this.hoverClick}className="buttons material-icons md-48">add</i>
+            </nav>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>{issueTitle}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h4><img src={issueCover} alt={issueAlt} /></h4>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <h3>Synopsis</h3>
+                    <p>
+                      {issue.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12">
-                  <h3>User Review</h3>
-                  {issue.userReview}
-                  <form id='reviewForm' className='hidden'>
-                    <div class="form-group">
-                      <label for="inputTitle">Leave a Review Here</label>
-                      <input type="text" class="form-control" id="inputReview" placeholder="Leave a Review" onChange={this.props.reviewStr}/>
-                    </div>
-                    <button type="submit" class="btn btn-default" onClick={saveReviewClick}>Submit</button>
-                  </form>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <h3>User Review</h3>
+                    {issue.userReview}
+                    <form id='reviewForm' className='hidden'>
+                      <div class="form-group">
+                        <label for="inputTitle">Leave a Review Here</label>
+                        <input type="text" class="form-control" id="inputReview" placeholder="Leave a Review" onChange={this.props.reviewStr}/>
+                      </div>
+                      <button type="submit" class="btn btn-default" onClick={saveReviewClick}>Submit</button>
+                    </form>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12">
-                  <button className="btn btn-primary reviewReveal" onClick={reviewIssueClick}>Leave a Review</button>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <button className="btn btn-primary reviewReveal" onClick={reviewIssueClick}>Leave a Review</button>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12">
-                  <h3>Characters</h3>
-                  {charactersComponent}
+                <div className="row">
+                  <div className="col-xs-12">
+                    <h3>Characters</h3>
+                    {charactersComponent}
+                  </div>
                 </div>
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={this.handleClose}>Close</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
         </div>
       );
     } else
     {
       return (
-        <div className="MyComicIssue col-xs-12 col-sm-6 col-md-4 col-lg-4">
-          <a href="/" className="thumbnail" onClick={singleIssueClick}>
-            <img className='myLib' src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
-          </a>
-          <nav className="navContainer">
-            <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="un-Favorite" style={{color: 'orange'}}>report</li>
-            <li className="buttons material-icons md-48" onClick={rmvIssueClick} tooltip="Remove from Library">cancel</li>
-            <i onClick={this.hoverClick}className="buttons material-icons md-48">add</i>
-          </nav>
-          <Modal show={this.state.show} onHide={this.handleClose}>
-            <Modal.Header closeButton>
-              <Modal.Title>{issueTitle}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <h4><img src={issueCover} alt={issueAlt} /></h4>
-              <div className="row">
-                <div className="col-xs-12">
-                  <h3>Synopsis</h3>
-                  <p>
-                    {issue.description}
-                  </p>
+        <div className="MyComicIssue col-xs-12 col-sm-6 col-md-3 col-lg-3">
+          <div className="thumb">
+            <a href="/" className="thumbnail" onClick={singleIssueClick}>
+              <img className='myLib' src={issueCover} alt={issueAlt} onClick={this.handleShow}/>
+            </a>
+            <nav className="navContainer">
+              <li className="buttons material-icons md-48" onClick={favIssueClick} tooltip="un-Favorite" style={{color: 'orange'}}>report</li>
+              <li className="buttons material-icons md-48" onClick={rmvIssueClick} tooltip="Remove from Library">cancel</li>
+              <i onClick={this.hoverClick}className="buttons material-icons md-48">add</i>
+            </nav>
+            <Modal show={this.state.show} onHide={this.handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>{issueTitle}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <h4><img src={issueCover} alt={issueAlt} /></h4>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <h3>Synopsis</h3>
+                    <p>
+                      {issue.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12">
-                  <h3>User Review</h3>
-                  {issue.userReview}
-                  <form id='reviewForm' className='hidden'>
-                    <div class="form-group">
-                      <label for="inputTitle">Leave a Review Here</label>
-                      <input type="text" class="form-control" id="inputReview" placeholder="Leave a Review" onChange={this.props.reviewStr}/>
-                    </div>
-                    <button type="submit" class="btn btn-default" onClick={saveReviewClick}>Submit</button>
-                  </form>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <h3>User Review</h3>
+                    {issue.userReview}
+                    <form id='reviewForm' className='hidden'>
+                      <div class="form-group">
+                        <label for="inputTitle">Leave a Review Here</label>
+                        <input type="text" class="form-control" id="inputReview" placeholder="Leave a Review" onChange={this.props.reviewStr}/>
+                      </div>
+                      <button type="submit" class="btn btn-default" onClick={saveReviewClick}>Submit</button>
+                    </form>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12">
-                  <button className="btn btn-primary reviewReveal" onClick={reviewIssueClick}>Leave a Review</button>
+                <div className="row">
+                  <div className="col-xs-12">
+                    <button className="btn btn-primary reviewReveal" onClick={reviewIssueClick}>Leave a Review</button>
+                  </div>
                 </div>
-              </div>
-              <div className="row">
-                <h3>Characters</h3>
-                {charactersComponent}
-              </div>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button onClick={this.handleClose}>Close</Button>
-            </Modal.Footer>
-          </Modal>
+                <div className="row">
+                  <h3>Characters</h3>
+                  {charactersComponent}
+                </div>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button onClick={this.handleClose}>Close</Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
         </div>
       );
     }

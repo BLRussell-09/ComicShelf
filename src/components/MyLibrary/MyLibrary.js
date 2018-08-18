@@ -178,19 +178,20 @@ class MyLibrary extends React.Component
 
     return (
       <div className="MyLibrary">
+        <div className="row favheader">
+          <h3>My Favorites</h3>
+        </div>
+        <div className="row ">
+          <div className="col-xs-12 favs">
+            {favIssueComponent}
+          </div>
+        </div>
         <div className="row">
-          <h2>My Library</h2>
           <div className="col-xs-12 libContainer">
-            <div className="col-xs-12 col-md-12 col-lg-6 mylibbox">
+            <div className="col-xs-12 col-md-12 col-lg-12 mylibbox">
               <h2>My Library</h2>
               <div className="col-xs-12">
                 {comicIssueComponent}
-              </div>
-            </div>
-            <div className="col-xs-12 col-md-4 col-md-offset-2 mylibbox">
-              <h2>My Favorites</h2>
-              <div className="col-xs-12">
-                {favIssueComponent}
               </div>
             </div>
           </div>
